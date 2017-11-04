@@ -70,7 +70,7 @@ class App extends Component {
       context.bezierCurveTo(x, y + 50, x + (b - x), y + 50, b, a);
     }
 
-    context.lineWidth = 2;
+    context.lineWidth = 1;
     context.strokeStyle = "#6eb41d";
     context.stroke();
   }

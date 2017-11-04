@@ -27,7 +27,7 @@ class Node extends Component {
       maxDynamicPos = 220,
       minDynamicPos = 85;
 
-    let dynamicPosition = window.innerWidth / 7;
+    let dynamicPosition = window.innerWidth / 10;
     dynamicPosition < minDynamicPos ? (dynamicPosition = minDynamicPos) : false;
     dynamicPosition > maxDynamicPos ? (dynamicPosition = maxDynamicPos) : false;
 

@@ -10,7 +10,7 @@
   height: 200px;
 }
 
-.App .node {
+.App .node, .App-additional .node {
   position: relative;
 }
 
@@ -90,6 +90,48 @@ canvas {
   top: 0;
   left: 0;
   z-index: 100;
+}
+
+
+#another-wrap {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.App-additional {
+  width: 600px;
+  height: 200px;
+}
+
+.App-additional .griffel .box {
+  background-color: rgb(75, 75, 75);
+}
+.App-additional .hagrid .box {
+  background-color: #85D1B8;
+}
+.App-additional .delacour .box {
+  background-color: #E56B74;
+}
+.App-additional .malfidus .box {
+  background-color: #F9EC93;
+}
+.App-additional .potter .box {
+  background-color: #FCBFFF;
+}
+
+.App-additional .tops .box {
+  background-color: #97ffa0;
+}
+
+.App-additional .box {
+  width: 200px;
+  height: 100px;
+  float: left;
+  text-align: center;
+  line-height: 100px;
+  position: relative;
 }
 
 @keyframes App-logo-spin {

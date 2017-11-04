@@ -24,7 +24,9 @@ class App extends Component {
 
     Object.keys(this.refs).forEach(key => {
       let { edit, box } = this.refs[key].refs;
-      this.updateCanvas(canvas, edit, box);
+      if (edit && box) {
+        this.updateCanvas(canvas, edit, box);
+      }
     });
   }
 
@@ -66,8 +68,13 @@ class App extends Component {
       edit.classList.contains("top-right")
     ) {
       context.bezierCurveTo(x, y - 50, x + (b - x), y - 50, b, a);
-    } else {
+    } else if (
+      edit.classList.contains("bottom-left") ||
+      edit.classList.contains("bottom-right")
+    ) {
       context.bezierCurveTo(x, y + 50, x + (b - x), y + 50, b, a);
+    } else {
+      context.lineTo(b,a);
     }
 
     context.lineWidth = 1;
@@ -108,6 +115,47 @@ class App extends Component {
             <Node
               ref="node4"
               className="node fourth"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"bottom-right"}
+            />
+          </div>
+        </div>
+
+        <div id="another-wrap">
+          <div className="App-additional">
+            <Node
+              ref="griffel"
+              className="node griffel"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"top-left"}
+            />
+            <Node
+              ref="hagrid"
+              className="node hagrid"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"top"}
+            />
+            <Node ref="delacour" className="node delacour" />
+            <Node
+              ref="malfidus"
+              className="node malfidus"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"bottom"}
+            />
+            <Node
+              ref="potter"
+              className="node potter"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"bottom"}
+            />
+            <Node
+              ref="tops"
+              className="node tops"
               canvas={this.state.canvas}
               updateCanvas={this.updateCanvas}
               tooltipPosition={"bottom-right"}

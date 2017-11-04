@@ -13,8 +13,7 @@ class App extends Component {
   componentDidMount() {
     const canvas = document.getElementsByTagName("canvas")[0];
     this.updateDimensions(canvas);
-    console.log(1);
-    // window.addEventListener("resize", () => this.updateDimensions(canvas));
+    window.addEventListener("resize", () => this.updateDimensions(canvas));
   }
 
   updateDimensions(canvas) {
@@ -22,6 +21,11 @@ class App extends Component {
     canvas.height = window.innerHeight;
     canvas.style.width = window.innerWidth + "px";
     canvas.style.height = window.innerHeight + "px";
+
+    Object.keys(this.refs).forEach(key => {
+      let { edit, box } = this.refs[key].refs;
+      this.updateCanvas(canvas, edit, box);
+    });
   }
 
   updateCanvas(canvas, edit, box) {
@@ -56,7 +60,16 @@ class App extends Component {
 
     context.beginPath();
     context.moveTo(x, y);
-    context.bezierCurveTo(x, y - 50, x + (b - x), y - 50, b, a);
+
+    if (
+      edit.classList.contains("top-left") ||
+      edit.classList.contains("top-right")
+    ) {
+      context.bezierCurveTo(x, y - 50, x + (b - x), y - 50, b, a);
+    } else {
+      context.bezierCurveTo(x, y + 50, x + (b - x), y + 50, b, a);
+    }
+
     context.lineWidth = 2;
     context.strokeStyle = "#6eb41d";
     context.stroke();
@@ -72,13 +85,33 @@ class App extends Component {
         <div id="wrap">
           <div className="App">
             <Node
+              ref="node1"
               className="node first"
               canvas={this.state.canvas}
               updateCanvas={this.updateCanvas}
+              tooltipPosition={"top-left"}
             />
-            {/* <Node className="node second" />
-            <Node className="node third" />
-            <Node className="node fourth" /> */}
+            <Node
+              ref="node2"
+              className="node second"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"top-right"}
+            />
+            <Node
+              ref="node3"
+              className="node third"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"bottom-left"}
+            />
+            <Node
+              ref="node4"
+              className="node fourth"
+              canvas={this.state.canvas}
+              updateCanvas={this.updateCanvas}
+              tooltipPosition={"bottom-right"}
+            />
           </div>
         </div>
       </div>
